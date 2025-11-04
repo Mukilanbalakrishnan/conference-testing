@@ -1,0 +1,45 @@
+/* --- Organizers Section CSS --- */
+.organizers-section {
+  padding: 6rem 0;
+  background: var(--white);
+}
+
+.info-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2rem;
+}
+
+.info-card {
+  background: var(--surface-light);
+  padding: 2rem;
+  border-radius: var(--radius);
+  text-align: center;
+  border: 1px solid var(--surface-dark);
+  transition: all 0.3s ease; /* Added for hover effect */
+}
+
+/* NEW: Added hover effect */
+.info-card:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--shadow-soft);
+}
+
+.info-card .uni-logo {
+  max-height: 40px;
+  margin-bottom: 1rem;
+}
+
+.info-card h4 {
+  margin: 0 0 0.5rem 0;
+  color: var(--brand-blue-dark);
+  font-size: 1.2rem; /* Increased font size */
+  font-weight: 700;   /* Increased font weight */
+}
+
+.info-card p {
+  margin: 0;
+  color: var(--text-secondary);
+  font-size: 1rem; /* Increased font size */
+  line-height: 1.6; /* Improved line spacing */
+}

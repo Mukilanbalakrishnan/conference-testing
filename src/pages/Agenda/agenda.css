@@ -1,0 +1,136 @@
+/* --- Animation Keyframes --- */
+@keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+@keyframes glow {
+    0% { box-shadow: 0 0 5px rgba(245, 124, 0, 0.4), 0 0 10px rgba(245, 124, 0, 0.3); }
+    50% { box-shadow: 0 0 20px rgba(245, 124, 0, 0.6), 0 0 30px rgba(245, 124, 0, 0.5); }
+    100% { box-shadow: 0 0 5px rgba(245, 124, 0, 0.4), 0 0 10px rgba(245, 124, 0, 0.3); }
+}
+
+/* --- Global Variables --- */
+:root {
+    --brand-orange: #F57C00;
+    --brand-orange-light: #fff3e0;
+    --brand-blue-dark: #0D47A1;
+    --brand-blue-primary: #1976D2;
+    --brand-green: #388E3C;
+    --text-primary: #111318;
+    --text-secondary: #6c757d;
+    --white: #FFFFFF;
+    --surface-light: #f8fafc;
+    --surface-dark: #eef2f7;
+    --border-color: #e2e8f0;
+    --page-max-width: 1100px;
+    --gutter: 1.5rem;
+    --radius: 12px;
+}
+
+/* --- Base Page & Hero Styles --- */
+.agenda-page {
+    background-color: var(--surface-light);
+    margin-top: -275px; 
+}
+.agenda-container { width: 100%; max-width: var(--page-max-width); margin: 0 auto; padding: 0 var(--gutter); }
+.agenda-hero { padding: 7rem 0 6rem; text-align: center; color: var(--white); background-image: radial-gradient(circle at 50% 30%, rgba(13, 71, 161, 0.85) 0%, rgba(13, 71, 161, 0.95) 100%), url('https://images.unsplash.com/photo-1505373877841-8d25f7d46678?q=80&w=2012&auto=format&fit=crop') no-repeat center center/cover; }
+.agenda-hero-title, .agenda-hero-subtitle { animation: fadeInUp 0.6s ease-out; }
+.agenda-hero-subtitle { animation-delay: 0.2s; }
+.agenda-countdown-container { animation: fadeInUp 0.6s 0.4s ease-out backwards; }
+.agenda-hero-title { font-size: clamp(2.5rem, 5vw, 3.5rem); font-weight: 800; margin: 0 0 0.5rem; }
+.agenda-hero-subtitle { font-size: 1.2rem; max-width: 600px; margin: 0 auto 2.5rem; opacity: 0.9; }
+
+/* --- Countdown --- */
+.agenda-countdown-container { display: flex; justify-content: center; gap: 1.5rem; }
+.agenda-countdown-item { background: var(--surface-dark); border: 1px solid var(--border-color); box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05); border-radius: var(--radius); padding: 1.25rem; min-width: 110px; text-align: center; }
+.agenda-countdown-number { font-size: clamp(2.5rem, 6vw, 3.5rem); font-weight: 700; line-height: 1; color: var(--brand-blue-dark); }
+.agenda-countdown-label { font-size: 0.8rem; font-weight: 600; text-transform: uppercase; letter-spacing: 1.5px; margin-top: 0.5rem; display: block; color: var(--text-secondary); }
+.agenda-conference-live { font-size: 2rem; padding: 1rem 2rem; background: var(--brand-orange); color: var(--white); border-radius: var(--radius); }
+
+/* --- Schedule Container & Tabs --- */
+.agenda-schedule-container { margin-top: -60px; position: relative; background: var(--white); border-radius: var(--radius); box-shadow: 0 10px 30px rgba(17, 19, 24, 0.07); padding: 2.5rem; margin-bottom: 5rem; }
+.agenda-tabs { display: flex; justify-content: center; border-bottom: 2px solid var(--surface-dark); margin-bottom: 3rem; }
+.agenda-tab-btn { padding: 1rem 2rem; border: none; background: none; font-size: 1.1rem; font-weight: 600; color: var(--text-secondary); cursor: pointer; position: relative; transition: color 0.3s ease; }
+.agenda-tab-btn.active { color: var(--brand-blue-primary); }
+.agenda-tab-btn::after { content: ''; position: absolute; bottom: -2px; left: 50%; transform: translateX(-50%); width: 0; height: 3px; background: var(--brand-blue-primary); transition: width 0.3s ease; }
+.agenda-tab-btn.active::after { width: 100%; }
+.agenda-grid-content { transition: opacity 0.3s ease-in-out; }
+.agenda-grid-content.fading { opacity: 0; }
+
+/* --- GRID LAYOUT --- */
+.agenda-grid { display: grid; grid-template-columns: 120px 1fr; gap: 0 2rem; }
+.agenda-grid-item { display: contents; }
+.agenda-time-slot { position: relative; padding: 1.5rem 0; }
+.agenda-time { font-size: 1.1rem; font-weight: 700; color: var(--brand-blue-primary); text-align: right; padding-right: 2.5rem; }
+.agenda-time-connector { position: absolute; top: 0; right: 0; bottom: 0; width: 2px; background-color: var(--border-color); }
+.agenda-time-connector::after { content: ''; position: absolute; top: calc(1.5rem + 10px); right: -7px; width: 16px; height: 16px; background-color: var(--white); border: 3px solid var(--border-color); border-radius: 50%; transition: border-color 0.3s ease; }
+
+.agenda-card {
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius);
+    padding: 1.5rem;
+    padding-left: 2rem; /* MODIFIED: Increased left padding for the new bar */
+    margin-bottom: 1.5rem;
+    background-color: var(--white);
+    transition: all 0.3s ease;
+    opacity: 0;
+    animation: fadeInUp 0.5s ease-out forwards;
+    position: relative; /* MODIFIED: Needed for the ::before pseudo-element */
+    overflow: hidden; /* MODIFIED: Keeps the new bar contained */
+}
+
+/* NEW: Decorative bar on the left of the card */
+.agenda-card::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 6px;
+    background-color: var(--brand-blue-primary); /* Default color for upcoming */
+    transition: background-color 0.3s ease;
+}
+
+.agenda-card-header { display: flex; align-items: flex-start; gap: 1rem; margin-bottom: 1rem; }
+.agenda-icon { font-size: 1.5rem; color: var(--brand-blue-primary); margin-top: 3px; }
+.agenda-title-group { flex: 1; }
+.agenda-event-title { font-size: 1.2rem; font-weight: 700; margin: 0 0 0.25rem; color: var(--text-primary); }
+.agenda-event-duration { display: none; font-size: 0.9rem; color: var(--text-secondary); margin: 0; }
+.agenda-event-venue { font-size: 1rem; color: var(--text-secondary); margin: 0; display: flex; align-items: center; gap: 0.5rem; }
+
+/* --- Status Badges --- */
+.agenda-live-badge, .agenda-completed-badge { font-size: 0.75rem; font-weight: 600; padding: 0.25rem 0.75rem; border-radius: 20px; display: flex; align-items: center; gap: 0.3rem; }
+.agenda-live-badge { background-color: var(--brand-orange-light); color: var(--brand-orange); }
+.agenda-completed-badge { background-color: #e8f5e9; color: var(--brand-green); }
+
+/* --- Status Styling --- */
+.agenda-grid-item.in-progress .agenda-time { color: var(--brand-orange); }
+.agenda-grid-item.in-progress .agenda-time-connector::after { border-color: var(--brand-orange); }
+.agenda-grid-item.in-progress .agenda-card { background-color: var(--brand-orange-light); border-color: var(--brand-orange); animation: glow 3s infinite, fadeInUp 0.5s ease-out forwards; }
+.agenda-grid-item.in-progress .agenda-card::before { background-color: var(--brand-orange); } /* MODIFIED */
+
+.agenda-grid-item.completed { opacity: 0.8; }
+.agenda-grid-item.completed .agenda-time-connector::after { border-color: var(--brand-green); background-color: var(--brand-green); }
+.agenda-grid-item.completed .agenda-card { background-color: var(--surface-light); }
+.agenda-grid-item.completed .agenda-card::before { background-color: var(--brand-green); } /* MODIFIED */
+.agenda-grid-item.completed .agenda-event-title { color: var(--text-secondary); }
+
+
+/* --- Responsive (Mobile) --- */
+@media (max-width: 768px) {
+    .agenda-page{ margin-top: -275px; } /* Adjusted margin for better layout */
+    .agenda-schedule-container { padding: 1.5rem; }
+    .agenda-grid { grid-template-columns: 1fr; gap: 0; }
+    .agenda-time-slot { display: none; }
+    .agenda-card { width: 100%; margin-bottom: 1rem; }
+    .agenda-event-duration { display: flex; align-items: center; gap: 0.5rem; }
+    .agenda-card-header { flex-wrap: wrap; }
+    .agenda-hero { padding: 5rem 0; }
+    .agenda-countdown-container { gap: 0.5rem; flex-wrap: wrap; }
+    .agenda-countdown-item { flex: 1; min-width: 80px; padding: 0.75rem; }
+    .agenda-countdown-number { font-size: 2.5rem; }
+    .agenda-tabs { flex-direction: column; gap: 0.5rem; }
+    .agenda-tab-btn { padding: 1rem; border-bottom: 2px solid var(--surface-dark); }
+    .agenda-tab-btn.active::after { display: none; }
+    .agenda-tab-btn.active { background-color: var(--surface-dark); border-radius: var(--radius); }
+}

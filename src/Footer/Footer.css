@@ -1,0 +1,142 @@
+/* --- Main Footer Styles --- */
+.footer-container {
+    background-color: var(--brand-blue-dark);
+    color: var(--white);
+    width: 100vw;
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 2rem;
+}
+
+.footer-main {
+    padding: 4rem 0;
+}
+
+/* --- NEW FLEXBOX LAYOUT --- */
+.footer-layout {
+    display: flex;
+    flex-direction: column; /* Stack on mobile by default */
+    gap: 3rem;
+}
+
+.footer-brand-section {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+    flex-shrink: 0;
+}
+
+.footer-links-section {
+    display: flex;
+    flex-direction: column; /* Stack on mobile by default */
+    gap: 2.5rem;
+    width: 100%;
+}
+
+
+/* --- Content Styles (largely unchanged) --- */
+.footer-brand {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    text-decoration: none;
+    color: inherit;
+}
+.brand-main-text {
+    font-size: 1.8rem;
+    font-weight: 800;
+    color: var(--brand-orange);
+}
+.brand-sub-text {
+    font-size: 0.875rem;
+    color: rgba(255, 255, 255, 0.8);
+}
+.brand-tagline {
+    font-size: 0.95rem;
+    color: rgba(255, 255, 255, 0.8);
+    line-height: 1.6;
+    max-width: 320px;
+}
+
+.footer-heading {
+    font-size: 1.125rem;
+    font-weight: 600;
+    margin-bottom: 1.5rem;
+    color: var(--white);
+}
+
+.footer-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+    font-size: 0.95rem;
+}
+
+.footer-link {
+    cursor: pointer;
+    transition: color 0.3s ease;
+    text-decoration: none;
+    color: rgba(255, 255, 255, 0.8);
+}
+.footer-link:hover {
+    color: var(--brand-orange);
+}
+
+.social-icons {
+    display: flex;
+    gap: 1.25rem;
+    font-size: 1.5rem;
+}
+
+.back-to-top-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: none;
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    color: var(--white);
+    padding: 0.6rem 1.2rem;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-weight: 500;
+    margin-top: 1rem;
+    width: fit-content;
+}
+.back-to-top-btn:hover {
+    background-color: var(--brand-orange);
+    border-color: var(--brand-orange);
+}
+
+/* --- Bottom Copyright Bar --- */
+.footer-copyright-bar {
+    color: var(--white);
+    text-align: center;
+    padding: 1rem var(--gutter);
+    font-size: 0.875rem;
+    font-weight: 500;
+    margin-top: 1rem;
+}
+
+.footer-copyright-bar-company {
+    color: var(--white);
+    margin: 0;
+}
+
+
+/* --- Responsive Adjustments --- */
+/* Medium screens and up */
+@media (min-width: 768px) {
+    .footer-layout {
+        flex-direction: row; /* Arrange side-by-side */
+        justify-content: space-between;
+    }
+    .footer-links-section {
+        flex-direction: row; /* Arrange side-by-side */
+        justify-content: space-around;
+    }
+}

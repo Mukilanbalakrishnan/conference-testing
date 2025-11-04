@@ -1,0 +1,824 @@
+@import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css');
+
+:root {
+    --page-max-width: 1100px;
+    --gutter: 18px;
+    --brand-blue-dark: #1a365d;
+    --brand-blue-primary: #2a4f8a;
+    --brand-blue-light: #ebf4ff;
+    --brand-orange: #ff6b00;
+    --brand-red: #e53e3e;
+    --white: #ffffff;
+    --surface-dark: #e2e8f0;
+    --surface-light: #f7fafc;
+    --text-primary: #2d3748;
+    --text-secondary: #718096;
+    --radius: 6px;
+    --shadow-soft: 0 3px 5px rgba(0, 0, 0, 0.07);
+    --shadow-strong: 0 8px 12px -3px rgba(0, 0, 0, 0.1);
+}
+
+.contact-page-root {
+    position: relative;
+    overflow: hidden;
+    margin-top: -10rem; 
+}
+
+.decorative-circle {
+    position: absolute;
+    border-radius: 50%;
+    background: linear-gradient(135deg, rgba(255, 107, 0, 0.1) 0%, rgba(42, 79, 138, 0.1) 100%);
+    z-index: -1;
+}
+
+.decorative-circle.circle-1 {
+    width: 250px;
+    height: 250px;
+    top: -120px;
+    right: -120px;
+}
+
+.decorative-circle.circle-2 {
+    width: 160px;
+    height: 160px;
+    bottom: 80px;
+    left: -80px;
+}
+
+.main-content {
+    max-width: var(--page-max-width);
+    margin: 0 auto;
+    padding: 30px var(--gutter);
+    margin-top: 100px;
+}
+
+.page-header {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.page-title {
+    font-size: 2rem;
+    line-height: 1.1;
+    color: var(--brand-blue-dark);
+    font-weight: 700;
+    margin-bottom: 0.8rem;
+}
+
+.page-subtitle {
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    max-width: 550px;
+    margin: 0 auto;
+    line-height: 1.5;
+}
+
+/* --- Contact Grid --- */
+.contact-grid-container {
+    display: grid;
+    grid-template-columns: 1.2fr 0.8fr;
+    gap: 25px;
+    align-items: stretch;
+}
+
+/* --- Form Section --- */
+.form-section {
+    background: var(--white);
+    padding: 25px;
+    border-radius: var(--radius);
+    box-shadow: var(--shadow-strong);
+    border-top: 3px solid var(--brand-orange);
+}
+
+.form-section h3 {
+    font-size: 1.3rem;
+    color: var(--text-primary);
+    font-weight: 700;
+    margin-bottom: 20px;
+}
+
+.form-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+}
+
+.form-field {
+    display: flex;
+    flex-direction: column;
+}
+
+.form-field.full-width {
+    grid-column: 1 / -1;
+}
+
+.form-field label {
+    font-size: 13px;
+    font-weight: 600;
+    margin-bottom: 6px;
+    color: var(--text-primary);
+}
+
+.form-field label:after {
+    content: ' *';
+    color: var(--brand-red);
+}
+
+.form-field.optional label:after {
+    content: '';
+}
+
+.form-field input, .form-field textarea, .form-field select {
+    padding: 12px;
+    border: 1px solid var(--surface-dark);
+    border-radius: 6px;
+    font-size: 14px;
+    font-family: 'Poppins', sans-serif;
+    transition: all 0.3s ease;
+}
+
+.form-field input:focus, .form-field textarea:focus, .form-field select:focus {
+    outline: none;
+    border-color: var(--brand-blue-primary);
+    box-shadow: 0 0 0 3px var(--brand-blue-light);
+}
+
+.contact-input-group {
+    display: flex;
+}
+
+.contact-input-group select {
+    border-right: none;
+    border-radius: 6px 0 0 6px;
+    background-color: var(--surface-light);
+    width: 80px;
+}
+
+.contact-input-group input {
+    border-radius: 0 6px 6px 0;
+    /* flex: 1; Make input field take remaining space */
+    width:50%;
+}
+
+.form-field textarea {
+    min-height: 100px;
+    resize: vertical;
+}
+
+.error-message {
+    color: var(--brand-red);
+    font-size: 11px;
+    margin-top: 5px;
+}
+
+/* --- Info Card Section with Hover Effects --- */
+.info-card-container {
+    background: linear-gradient(135deg, var(--brand-blue-primary), var(--brand-blue-dark));
+    color: var(--white);
+    padding: 25px;
+    border-radius: var(--radius);
+    box-shadow: var(--shadow-strong);
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    overflow: hidden;
+    /* height: fit-content; */
+}
+
+.info-card-container::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: var(--brand-orange);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.4s ease;
+}
+
+.info-card-container:hover::before {
+    transform: scaleX(1);
+}
+
+.info-card-container h3 {
+    font-size: 1.2rem;
+    margin-bottom: 20px;
+    color: var(--white);
+    font-weight: 700;
+    position: relative;
+    display: inline-block;
+}
+
+.info-card-container h3::after {
+    content: '';
+    position: absolute;
+    bottom: -6px;
+    left: 0;
+    width: 35px;
+    height: 2px;
+    background: var(--brand-orange);
+    transition: width 0.3s ease;
+}
+
+.info-card-container:hover h3::after {
+    width: 100%;
+}
+
+/* Info Items with Even Spacing and Hover Effects */
+.info-items-container {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+.info-item {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 15px;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 6px;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.info-item::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 165, 0, 0.2), transparent);
+    transition: left 0.7s ease;
+}
+
+.info-item:hover {
+    background: rgba(255, 255, 255, 0.1);
+    transform: translateX(6px);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.info-item:hover::before {
+    left: 100%;
+}
+
+.info-item i {
+    font-size: 18px;
+    color: var(--brand-blue-dark);
+    background: var(--white);
+    width: 38px;
+    height: 38px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    flex-shrink: 0;
+    transition: all 0.3s ease;
+    z-index: 1;
+}
+
+.info-item:hover i {
+    background: var(--brand-orange);
+    color: var(--white);
+    transform: scale(1.1) rotate(5deg);
+}
+
+.info-item-content {
+    flex: 1;
+    font-size: 14px;
+    z-index: 1;
+}
+
+.info-item strong {
+    display: block;
+    font-weight: 600;
+    color: var(--white);
+    margin-bottom: 3px;
+    transition: color 0.3s ease;
+    font-size: 14px;
+}
+
+.info-item:hover strong {
+    color: var(--brand-orange);
+}
+
+.info-item span, .info-item a {
+    color: var(--surface-dark);
+    opacity: 0.8;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    font-size: 13px;
+}
+
+.info-item:hover span, .info-item:hover a {
+    opacity: 1;
+    color: rgba(255, 255, 255, 0.9);
+}
+
+.info-item a:hover {
+    text-decoration: underline;
+}
+
+/* Social Connect Section with Hover Effects - UPDATED */
+.social-connect {
+    margin-top: 15px;
+    padding-top: 20px;
+    border-top: 1px solid rgba(255, 255, 255, 0.2);
+    text-align: center;
+}
+
+.social-connect p {
+    font-weight: 600;
+    margin-bottom: 15px;
+    color: var(--white);
+    font-size: 15px;
+}
+
+.social-icons {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.social-icons a {
+
+    display: flex;
+    margin-right: 0.5rem;
+    align-items: center;
+    justify-content: center;
+    width: 38px;
+    height: 38px;
+    background: rgba(255, 255, 255, 0.15);
+    border-radius: 50%;
+    color: white;
+    font-size: 16px;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    position: relative;
+    overflow: hidden;
+}
+
+.social-icons a::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: var(--brand-orange);
+    border-radius: 50%;
+    transform: scale(0);
+    transition: transform 0.3s ease;
+    z-index: -1;
+}
+
+.social-icons a:hover {
+    transform: translateY(-4px);
+    color: white;
+}
+
+.social-icons a:hover::before {
+    transform: scale(1);
+}
+
+.social-icons a:hover i {
+    transform: scale(1.15);
+}
+
+/* Animation for the orange pop-up effect */
+@keyframes orangePulse {
+    0% {
+        box-shadow: 0 0 0 0 rgba(255, 140, 0, 0.4);
+    }
+    70% {
+        box-shadow: 0 0 0 8px rgba(255, 140, 0, 0);
+    }
+    100% {
+        box-shadow: 0 0 0 0 rgba(255, 140, 0, 0);
+    }
+}
+
+.info-item:hover {
+    animation: orangePulse 1.5s infinite;
+}
+
+/* Submit Button */
+.submit-btn {
+    background: var(--brand-orange);
+    color: white;
+    padding: 12px;
+    border: none;
+    border-radius: 5px;
+    font-size: 14px;
+    font-weight: 700;
+    cursor: pointer;
+    width: 100%;
+    margin-top: 10px;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+                
+.submit-btn:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+    transition: 0.5s;
+}
+
+.submit-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-strong);
+}
+
+.submit-btn:hover:before {
+    left: 100%;
+}
+
+.submit-btn:disabled {
+    opacity: 0.8;
+    cursor: not-allowed;
+    transform: none;
+}
+
+/* FAQ Section */
+.faq-section {
+    margin-top: 50px;
+}
+
+.faq-title {
+    text-align: center;
+    font-size: 1.6rem;
+    font-weight: 700;
+    margin-bottom: 25px;
+    color: var(--brand-blue-dark);
+}
+
+.faq-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 15px;
+}
+
+.faq-item {
+    background: var(--white);
+    padding: 18px;
+    border-radius: 8px;
+    box-shadow: var(--shadow-soft);
+    transition: transform 0.3s ease;
+}
+
+.faq-item:hover {
+    transform: translateY(-3px);
+}
+
+.faq-item h4 {
+    font-size: 18px;
+    font-weight: 650;
+    margin-bottom: 8px;
+    color: var(--brand-blue-dark);
+    display: flex;
+    align-items: center;
+}
+
+.faq-item h4 i {
+    color: var(--brand-orange);
+    margin-right: 8px;
+    font-size: 18px;
+}
+
+.faq-item p {
+    color: var(--text-secondary);
+    line-height: 1.5;
+    font-size: 14px;
+}
+
+/* Map Container - REDUCED SIZE */
+.map-container {
+    border-radius: var(--radius);
+    overflow: hidden;
+    height: 320px; /* Reduced from original size */
+    width: 100%;
+    margin-top: 30px;
+    box-shadow: var(--shadow-soft);
+}
+
+/* --- Responsive Design --- */
+@media (max-width: 1024px) {
+    .contact-grid-container {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+    
+    .map-container {
+        height: 300px;
+    }
+}
+
+
+/* Small tablets and large phones */
+@media (max-width: 768px) {
+    .main-content {
+        padding: 25px 15px;
+    }
+    
+    .form-grid {
+        grid-template-columns: 1fr;
+        gap: 12px;
+    }
+    
+    .form-section, .info-card-container {
+        padding: 20px;
+    }
+    
+    .page-title {
+        font-size: 1.7rem;
+        margin-bottom: 0.5rem;
+    }
+    
+    .page-subtitle {
+        font-size: 0.85rem;
+        max-width: 100%;
+    }
+    
+    .info-item {
+        flex-direction: row;
+        text-align: left;
+        padding: 12px;
+        gap: 12px;
+        align-items: flex-start;
+    }
+    
+    .info-item i {
+        margin-bottom: 0;
+        width: 36px;
+        height: 36px;
+        font-size: 16px;
+        margin-top: 0;
+    }
+    
+    .social-icons {
+        justify-content: center;
+        gap: 10px;
+    }
+    
+    .social-icons a {
+        width: 36px;
+        height: 36px;
+        font-size: 15px;
+    }
+    
+    .map-container {
+        height: 280px;
+        margin-top: 25px;
+    }
+    
+    .faq-title {
+        font-size: 1.4rem;
+        margin-bottom: 20px;
+    }
+    
+    .faq-item {
+        padding: 15px;
+    }
+    
+    .faq-item h4 {
+        font-size: 16px;
+    }
+    
+    .faq-item p {
+        font-size: 13px;
+    }
+}
+
+/* Mobile phones */
+@media (max-width: 480px) {
+    .main-content {
+        padding: 20px 12px;
+    }
+    
+    .decorative-circle.circle-1 {
+        width: 180px;
+        height: 180px;
+        top: -90px;
+        right: -90px;
+    }
+    
+    .decorative-circle.circle-2 {
+        width: 120px;
+        height: 120px;
+        bottom: 60px;
+        left: -60px;
+    }
+    
+    .form-section, .info-card-container {
+        padding: 18px;
+    }
+    
+    .form-section h3 {
+        font-size: 1.2rem;
+        margin-bottom: 15px;
+    }
+    
+    .form-field input, .form-field textarea, .form-field select {
+        padding: 10px;
+        font-size: 13px;
+    }
+    
+    /* Maintain the same structure on mobile - icon on left, content on right */
+    .info-item {
+        flex-direction: row;
+        text-align: left;
+        gap: 12px;
+        padding: 12px 10px;
+        align-items: flex-start;
+    }
+    
+    .info-item-content {
+        text-align: left;
+    }
+    
+    .info-item strong {
+        font-size: 13px;
+    }
+    
+    .info-item span, .info-item a {
+        font-size: 12px;
+    }
+    
+    .social-icons {
+        gap: 8px;
+    }
+    
+    .social-icons a {
+        width: 34px;
+        height: 34px;
+        font-size: 14px;
+    }
+    
+    .map-container {
+        height: 250px;
+        margin-top: 20px;
+    }
+    
+    .faq-section {
+        margin-top: 40px;
+    }
+    
+    .faq-grid {
+        grid-template-columns: 1fr;
+        gap: 12px;
+    }
+    
+    .faq-item h4 {
+        font-size: 15px;
+    }
+    
+    .submit-btn {
+        padding: 10px;
+        font-size: 13px;
+    }
+    
+    /* Social media section improvements */
+    .social-connect p {
+        font-size: 14px;
+        margin-bottom: 12px;
+    }
+}
+
+
+/* ADD THESE STYLES FOR THE NEW FILE INPUT */
+.file-input-wrapper {
+    position: relative;
+    width: 100%;
+}
+
+.file-input-hidden {
+    /* Hide the default browser file input */
+    opacity: 0;
+    position: absolute;
+    z-index: -1;
+}
+
+.file-input-label {
+    display: flex;
+    align-items: center;
+    padding: 12px;
+    border: 1px dashed var(--surface-dark); /* Dashed border for a "dropzone" feel */
+    border-radius: 6px;
+    font-size: 14px;
+    font-family: 'Poppins', sans-serif;
+    color: var(--text-secondary);
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.file-input-label:hover {
+    border-color: var(--brand-orange);
+    background-color: var(--surface-light);
+}
+
+.file-input-label i {
+    margin-right: 10px;
+    color: var(--brand-orange);
+    font-size: 1.2rem;
+}
+
+/* Styles to handle long file names gracefully */
+.file-input-label span {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+/* END OF NEW STYLES */
+
+.error-message {
+    color: var(--brand-red);
+    font-size: 11px;
+    margin-top: 5px;
+}
+
+/* Very small mobile phones */
+@media (max-width: 360px) {
+    .page-title {
+        font-size: 1.5rem;
+    }
+    
+    .form-section h3, .info-card-container h3 {
+        font-size: 1.1rem;
+    }
+    
+    /* Keep the contact input group horizontal on small screens */
+    .contact-input-group {
+        flex-direction: row; /* Keep it horizontal */
+    }
+    
+    .contact-input-group select {
+        width: 80px; /* Same width as normal screens */
+        border-radius: 6px 0 0 6px;
+        border-right: none;
+        margin-bottom: 0;
+    }
+    
+    .contact-input-group input {
+        border-radius: 0 6px 6px 0;
+        flex: 1; /* Make input field take remaining space */
+        width: auto; /* Remove fixed width */
+    }
+    
+    .info-item i {
+        width: 32px;
+        height: 32px;
+        font-size: 14px;
+    }
+    
+    .social-icons a {
+        width: 32px;
+        height: 32px;
+        font-size: 13px;
+    }
+    
+    .map-container {
+        height: 220px;
+    }
+    
+    /* Ensure contact info maintains structure */
+    .info-item {
+        flex-direction: row;
+        gap: 10px;
+    }
+}
+
+/* Fix for hover effects on touch devices */
+@media (hover: none) {
+    .info-item:hover {
+        transform: none;
+        animation: none;
+    }
+    
+    .info-item:hover i {
+        transform: none;
+    }
+    
+    .social-icons a:hover {
+        transform: none;
+    }
+    
+    .submit-btn:hover {
+        transform: none;
+    }
+    
+    .faq-item:hover {
+        transform: none;
+    }
+}

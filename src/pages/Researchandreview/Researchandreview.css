@@ -1,0 +1,114 @@
+/* --- Base Page Styles --- */
+.researchandreview {
+    background-color: var(--surface-light);
+    font-family: 'Poppins', sans-serif;
+    padding: 2rem 0 4rem 0;
+    margin-top: -10rem; 
+}
+
+.researchandreview .container {
+    width: 100%;
+    max-width: var(--page-max-width);
+    margin: 0 auto;
+    padding: 0 var(--gutter);
+}
+
+/* --- Page Header --- */
+.researchandreview .page-header {
+    text-align: center;
+    padding: 3rem 1rem 3rem 1rem;
+    margin-bottom: 4rem;
+}
+
+.researchandreview .page-header h1 {
+    font-size: clamp(2.2rem, 5vw, 3rem);
+    color: var(--brand-blue-dark);
+    margin: 0;
+    position: relative;
+    display: inline-block;
+    padding-bottom: 0.75rem;
+}
+
+.researchandreview .page-header h1::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80px;
+    height: 4px;
+    background-color: var(--brand-orange);
+    border-radius: 2px;
+}
+
+/* --- Grid for Board Members --- */
+.researchandreview .board-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 2rem;
+}
+
+/* --- Individual Member Card Styling --- */
+.researchandreview .board-member-card {
+    background: var(--white);
+    border-radius: var(--radius);
+    padding: 2rem;
+    box-shadow: var(--shadow-soft);
+    border-top: 4px solid var(--brand-blue-primary);
+    transition: transform 0.4s ease, box-shadow 0.4s ease, opacity 0.6s ease, transform 0.6s ease;
+    text-align: left;
+    opacity: 0;
+    transform: translateY(20px);
+}
+
+.researchandreview .board-member-card.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.researchandreview .board-member-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+}
+
+/* Alternating card color */
+.researchandreview .board-member-card:nth-child(even) {
+    border-top-color: var(--brand-orange);
+}
+
+.researchandreview .member-name {
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin: 0 0 0.5rem 0;
+}
+
+.researchandreview .member-role {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--text-secondary);
+    margin: 0 0 1rem 0;
+    display: inline-block;
+    padding: 0.25rem 0.75rem;
+    background-color: var(--surface-dark);
+    border-radius: 50px;
+}
+
+.researchandreview .member-institution {
+    border-top: 1px solid var(--surface-dark);
+    padding-top: 1rem;
+    margin-top: 1rem;
+}
+
+.researchandreview .institution-department,
+.researchandreview .institution-line {
+    font-size: 0.95rem;
+    color: var(--text-secondary);
+    margin: 0;
+}
+
+.researchandreview .institution-department {
+    font-weight: 600;
+    color: var(--text-primary);
+}
+
