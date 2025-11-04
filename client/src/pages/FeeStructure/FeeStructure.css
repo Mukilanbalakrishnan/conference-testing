@@ -1,0 +1,288 @@
+/* --- Root Variables (for consistency) --- */
+
+/* --- Animation Keyframes --- */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* --- Main Section Styling --- */
+.fees-page-section {
+    padding: 5rem 0;
+    margin-top: -8rem;
+}
+
+/* --- Header Styling --- */
+.fees-header {
+    text-align: center;
+    margin-bottom: 3rem; /* Adjusted margin */
+    animation: fadeInUp 0.5s ease-out;
+}
+
+.fees-header h2 {
+    font-size: 2.5rem;
+    color: var(--brand-blue-dark);
+    margin: 0 0 0.5rem;
+}
+
+.fees-header p {
+    font-size: 1.1rem;
+    color: var(--text-secondary);
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+/* --- NEW: Disclaimer Section --- */
+.fees-disclaimer {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    background-color: var(--brand-blue-light);
+    border: 1px solid var(--brand-blue-primary);
+    border-left: 5px solid var(--brand-blue-primary);
+    padding: 1.5rem;
+    border-radius: var(--radius, 12px);
+    margin: 0 auto 4rem auto;
+    max-width: 800px;
+    animation: fadeInUp 0.5s 0.4s ease-out backwards; /* Adjusted animation delay */
+}
+
+.disclaimer-icon {
+    font-size: 1.5rem;
+    color: var(--brand-blue-primary);
+}
+
+.disclaimer-text {
+    font-size: 0.95rem;
+    color: var(--text-secondary);
+}
+.disclaimer-text strong {
+    color: var(--brand-blue-dark);
+}
+
+
+/* --- New Grid Layout for 3-2 structure --- */
+.fees-grid-layout {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.fees-row {
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    gap: 2rem;
+    justify-items: center;
+}
+
+/* Tablet view: 2 columns */
+@media (min-width: 768px) {
+    .fees-row {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    .fees-row-top {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+/* Desktop view: Specific adjustments for 3-2 layout */
+@media (min-width: 1200px) {
+    .fees-row-top {
+        grid-template-columns: repeat(3, 1fr);
+    }
+    .fees-row-bottom {
+        grid-template-columns: repeat(2, 1fr);
+        max-width: calc(2 * (350px + 2rem));
+        margin: 0 auto;
+    }
+}
+
+/* --- Pricing Card Styling --- */
+.fee-card {
+    background: var(--white);
+    border: 1px solid var(--surface-dark);
+    box-shadow: var(--shadow-soft);
+    border-radius: var(--radius, 12px);
+    padding: 2.5rem 2rem;
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    animation: fadeInUp 0.5s ease-out forwards;
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+    max-width: 350px;
+}
+
+.fee-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
+}
+
+/* --- Featured Card Styling --- */
+.fee-card.featured {
+    border-color: var(--brand-orange);
+    transform: scale(1.05);
+    z-index: 1;
+}
+.fee-card.featured:hover {
+    transform: scale(1.05) translateY(-10px);
+}
+
+.featured-badge {
+    position: absolute;
+    top: 0;
+    right: 0;
+    background-color: var(--brand-orange);
+    color: var(--white);
+    padding: 0.5rem 1rem;
+    font-size: 0.8rem;
+    font-weight: 700;
+    border-bottom-left-radius: var(--radius, 12px);
+}
+
+/* --- Card Content --- */
+.fee-card-icon {
+    font-size: 3rem;
+    color: var(--brand-orange);
+    margin-bottom: 1rem;
+}
+
+.fee-card-category {
+    font-size: 1.3rem;
+    color: var(--text-primary);
+    margin: 0 0 1.5rem;
+    min-height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* --- Price List --- */
+.price-list {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 2rem;
+    border-top: 1px solid var(--surface-dark);
+}
+
+.price-item {
+    display: flex;
+    justify-content: space-between;
+    padding: 1rem 0;
+    border-bottom: 1px solid var(--surface-dark);
+    font-size: 1rem;
+}
+
+.price-label {
+    color: var(--text-secondary);
+}
+
+.price-value {
+    color: var(--text-primary);
+    font-weight: 700;
+}
+
+.price-item.early-bird {
+    background-color: var(--brand-blue-light);
+    margin: 0 -2rem;
+    padding: 1rem 2rem;
+}
+
+.price-item.early-bird .price-label,
+.price-item.early-bird .price-value {
+    color: var(--brand-blue-dark);
+    font-weight: 700;
+}
+
+/* --- Register Button --- */
+.btn-register {
+    width: 100%;
+    padding: 0.8rem 1.5rem;
+    font-size: 1rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    color: var(--white);
+    background-color: var(--brand-blue-primary);
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.btn-register:hover {
+    background-color: var(--brand-blue-dark);
+    transform: translateY(-2px);
+}
+
+.fee-card.featured .btn-register {
+    background-color: var(--brand-orange);
+}
+
+.fee-card.featured .btn-register:hover {
+    background-color: var(--brand-orange-dark);
+}
+
+
+/* --- Important Notes Section --- */
+.fees-notes-section {
+    margin-bottom: 4rem; 
+    padding: 2.5rem;
+    background: var(--white);
+    border: 1px solid var(--surface-dark);
+    box-shadow: var(--shadow-soft);
+    border-radius: var(--radius);
+    animation: fadeInUp 0.5s 0.2s ease-out backwards;
+}
+
+.notes-title {
+    text-align: center;
+    font-size: 1.5rem;
+    color: var(--brand-blue-dark);
+    margin-top: 0;
+    margin-bottom: 2rem;
+}
+
+.notes-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+}
+
+@media (min-width: 768px) {
+    .notes-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+.note-item {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem;
+    background-color: var(--surface-light);
+    border-radius: 8px;
+}
+
+.note-icon {
+    font-size: 1.5rem;
+    color: var(--brand-blue-primary);
+    flex-shrink: 0;
+}
+
+.note-text {
+    font-size: 0.95rem;
+    color: var(--text-secondary);
+}
+
+.note-text strong {
+    color: var(--text-primary);
+    display: inline;
+    font-weight: 700;
+}
+

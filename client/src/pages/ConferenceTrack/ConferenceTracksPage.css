@@ -1,0 +1,339 @@
+/* --- Page & Layout --- */
+.ctp-tracks-page-container {
+    padding: clamp(3rem, 8vw, 6rem) 1rem; /* Fluid padding */
+    background: var(--surface-light);
+    margin-top: -8rem; 
+}
+
+.ctp-tracks-content-wrapper {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.ctp-tracks-page-header {
+    text-align: center;
+    margin-bottom: 4rem;
+}
+
+.ctp-tracks-page-header h1 {
+    font-size: clamp(2.2rem, 5vw, 3rem);
+    color: var(--brand-blue-dark);
+    margin-bottom: 0.75rem;
+}
+
+.ctp-tracks-page-header p {
+    font-size: clamp(1rem, 2vw, 1.1rem);
+    color: var(--text-secondary);
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+/* --- Track Cards Grid --- */
+.ctp-tracks-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2.5rem; /* Increased gap */
+}
+
+/* --- Track Cards --- */
+.ctp-track-card {
+    position: relative;
+    border-radius: var(--radius);
+    overflow: hidden;
+    box-shadow: var(--shadow-soft);
+    transition: box-shadow 0.3s ease, transform 0.3s ease;
+    background: var(--white);
+    border: 1px solid var(--surface-dark);
+    border-left-width: 5px;
+    display: flex;
+    flex-direction: column;
+}
+
+.ctp-track-card:hover {
+    box-shadow: var(--shadow-strong);
+    transform: translateY(-8px);
+}
+
+.ctp-track-content {
+    padding: 2.5rem; /* Increased padding */
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.ctp-track-title {
+    font-size: 1.6rem;
+    margin-top: 0;
+    margin-bottom: 1rem;
+    font-weight: 700;
+}
+
+.ctp-track-summary {
+    color: var(--text-secondary);
+    font-size: 1rem;
+    line-height: 1.7;
+    margin-bottom: 2rem;
+    flex-grow: 1;
+    text-align: justify;
+}
+
+.ctp-buttons-row {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    margin-top: auto;
+}
+
+/* --- Buttons --- */
+.ctp-btn {
+    cursor: pointer;
+    border: none;
+    border-radius: 8px;
+    padding: 0.8rem 1.75rem;
+    font-weight: 600;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.ctp-btn-primary {
+    color: var(--white);
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
+.ctp-btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+}
+
+.ctp-btn-secondary {
+    background: transparent;
+}
+.ctp-btn-secondary:hover {
+    background: var(--surface-light);
+}
+
+/* --- Track Theme Colors --- */
+/* Orange Tracks (1 & 4) */
+.track-indigo, .track-slate {
+    border-left-color: var(--brand-orange);
+}
+.track-indigo .ctp-track-title, .track-slate .ctp-track-title {
+    color: var(--text-primary);
+}
+.track-indigo .ctp-btn-primary, .track-slate .ctp-btn-primary {
+    background: var(--brand-orange);
+}
+.track-indigo .ctp-btn-primary:hover, .track-slate .ctp-btn-primary:hover {
+    background: var(--brand-orange-dark);
+}
+.track-indigo .ctp-btn-secondary, .track-slate .ctp-btn-secondary {
+    color: var(--brand-orange);
+    border: 2px solid var(--brand-orange);
+}
+.track-indigo .ctp-btn-secondary:hover, .track-slate .ctp-btn-secondary:hover {
+    background: var(--brand-orange);
+    color: var(--white);
+}
+
+/* Blue Tracks (2 & 3) */
+.track-teal, .track-amber {
+    border-left-color: var(--brand-blue-primary);
+}
+.track-teal .ctp-track-title, .track-amber .ctp-track-title {
+    color: var(--text-primary);
+}
+.track-teal .ctp-btn-primary, .track-amber .ctp-btn-primary {
+    background: var(--brand-blue-primary);
+}
+.track-teal .ctp-btn-primary:hover, .track-amber .ctp-btn-primary:hover {
+    background: var(--brand-blue-dark);
+}
+.track-teal .ctp-btn-secondary, .track-amber .ctp-btn-secondary {
+    color: var(--brand-blue-primary);
+    border: 2px solid var(--brand-blue-primary);
+}
+.track-teal .ctp-btn-secondary:hover, .track-amber .ctp-btn-secondary:hover {
+    background: var(--brand-blue-primary);
+    color: var(--white);
+}
+
+/* --- MODAL STYLES --- */
+.ctp-modal-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(17, 19, 24, 0.8);
+    backdrop-filter: blur(4px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+    z-index: 1000;
+}
+
+.ctp-track-detail-card {
+    width: 100%;
+    max-width: 900px;
+    max-height: 90vh;
+    background: var(--white);
+    border-radius: var(--radius);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+}
+
+.ctp-modal-header {
+    position: relative;
+    padding: 2rem 2.5rem;
+    flex-shrink: 0;
+    color: var(--white);
+}
+/* Modal Header Theming */
+.track-indigo .ctp-modal-header, .track-slate .ctp-modal-header {
+    background: var(--brand-orange);
+}
+.track-teal .ctp-modal-header, .track-amber .ctp-modal-header {
+    background: var(--brand-blue-dark);
+}
+
+.ctp-modal-close-btn {
+    position: absolute;
+    top: 1rem;
+    right: 1.5rem;
+    background: none;
+    border: none;
+    font-size: 2rem;
+    line-height: 1;
+    color: var(--white);
+    cursor: pointer;
+    opacity: 0.8;
+    transition: all 0.2s ease;
+}
+.ctp-modal-close-btn:hover {
+    opacity: 1;
+    transform: scale(1.1);
+}
+
+.ctp-track-main-title {
+    font-size: clamp(1.5rem, 4vw, 2rem);
+    font-weight: 700;
+    margin: 0;
+    line-height: 1.2;
+}
+
+.ctp-modal-scroll-content {
+    overflow-y: auto;
+    padding: 2.5rem;
+}
+
+.ctp-track-meta-section {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 2rem;
+    margin-bottom: 2.5rem;
+}
+
+.ctp-speaker-info {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    flex: 1 1 300px;
+}
+
+.ctp-speaker-image {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 4px solid var(--white);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    flex-shrink: 0;
+}
+
+.ctp-speaker-name {
+    margin: 0 0 0.25rem 0;
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--text-primary);
+}
+.ctp-speaker-about {
+    margin: 0;
+    font-size: 0.95rem;
+    color: var(--text-secondary);
+    line-height: 1.5;
+}
+
+.ctp-session-time {
+    border-radius: 8px;
+    padding: 1rem 1.5rem;
+    font-size: 0.9rem;
+    border-left-width: 4px;
+    border-left-style: solid;
+    flex-shrink: 0;
+}
+/* Session Time Theming */
+.track-indigo .ctp-session-time, .track-slate .ctp-session-time {
+    border-color: var(--brand-orange);
+    background-color: #FFF3E0; /* Light Orange */
+}
+.track-teal .ctp-session-time, .track-amber .ctp-session-time {
+    border-color: var(--brand-blue-primary);
+    background-color: var(--brand-blue-light);
+}
+
+.ctp-session-time p {
+    margin: 0.5rem 0;
+    color: var(--text-secondary);
+}
+.ctp-session-time strong {
+    color: var(--text-primary);
+}
+
+.ctp-track-summary-content {
+    border-top: 1px solid var(--surface-dark);
+    padding-top: 2.5rem;
+    text-align: justify;
+}
+.ctp-track-summary-content h3 {
+    font-size: 1.25rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    color: var(--text-primary);
+}
+.ctp-track-summary-content p {
+    font-size: 1rem;
+    color: var(--text-secondary);
+    line-height: 1.7;
+    white-space: pre-wrap;
+    
+}
+
+.ctp-modal-footer {
+    padding: 1.5rem 2.5rem;
+    border-top: 1px solid var(--surface-dark);
+    background: var(--surface-light);
+    display: flex;
+    justify-content: flex-end;
+    gap: 1rem;
+    flex-shrink: 0;
+}
+
+/* --- Responsive Media Queries --- */
+@media (min-width: 768px) {
+    .ctp-tracks-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+@media (max-width: 480px) {
+    .ctp-buttons-row {
+        flex-direction: column;
+    }
+}
+

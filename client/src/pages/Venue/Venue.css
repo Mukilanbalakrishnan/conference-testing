@@ -1,0 +1,272 @@
+
+/* --- Global Variables (assumed from your project) --- */
+:root {
+    --brand-orange: #F57C00;
+    --brand-orange-dark: #E65100; /* For hover */
+    --brand-blue-dark: #0D47A1;
+    --brand-blue-primary: #1976D2;
+    --brand-blue-light: #E3F2FD;
+    --text-primary: #111318;
+    --text-secondary: #6c757d;
+    --white: #FFFFFF;
+    --surface-light: #f8f9fa;
+    --surface-dark: #e9ecef;
+    --radius: 12px;
+    --shadow-soft: 0 6px 20px rgba(17, 19, 24, 0.06);
+    --shadow-strong: 0 10px 30px rgba(0,0,0,0.1);
+}
+
+/* --- Base Page Styles --- */
+.venue-page {
+    background-color: var(--surface-light);
+    padding: 2rem 1rem;
+    margin-top: -7rem;
+}
+
+/* --- Scroll Animation Styles --- */
+.content-section {
+    max-width: 1200px;
+    margin: 0 auto 3rem auto;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+.content-section.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.content-section:nth-of-type(2) { transition-delay: 0.1s; }
+.content-section:nth-of-type(3) { transition-delay: 0.2s; }
+
+
+.content-section h2 {
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--brand-blue-dark);
+    margin: 0 0 1.5rem 0;
+    text-align: center;
+}
+
+/* --- MOBILE-FIRST CARD DESIGN --- */
+.info-table {
+    border: none;
+    width: 100%;
+}
+.info-table thead {
+    display: none; /* Hide table headers on mobile */
+}
+.info-table tr {
+    display: block;
+    background: var(--white);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow-soft);
+    margin-bottom: 1.5rem;
+    padding: 1rem;
+    border-left: 4px solid var(--brand-orange);
+}
+.info-table td {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.75rem 0;
+    border-bottom: 1px solid var(--surface-dark);
+    font-size: 0.95rem;
+}
+.info-table td:last-child {
+    border-bottom: none;
+}
+.info-table td::before {
+    content: attr(data-label);
+    font-weight: 600;
+    color: var(--text-primary);
+}
+.content-box {
+    border: none;
+    padding: 0;
+    box-shadow: none;
+    background: none;
+}
+
+
+/* --- Button Styles --- */
+.btn {
+    padding: 0.5rem 1rem;
+    font-size: 0.85rem;
+    font-weight: 600;
+    border-radius: 8px;
+    cursor: pointer;
+    border: none;
+    transition: all 0.2s ease;
+}
+.btn-details {
+    background-color: var(--brand-blue-primary);
+    color: var(--white);
+}
+.btn-details:hover {
+    background-color: var(--brand-blue-dark);
+    transform: scale(1.05);
+}
+
+/* --- DESKTOP TABLE VIEW --- */
+@media (min-width: 768px) {
+    .venue-page {
+        padding: 4rem 1.5rem;
+    }
+    
+    .content-box {
+        background-color: var(--white);
+        border: 1px solid var(--surface-dark);
+        border-left: 4px solid var(--brand-orange); /* Orange accent line */
+        border-radius: var(--radius);
+        padding: 2rem;
+        box-shadow: var(--shadow-soft);
+        overflow: hidden;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .content-box:hover {
+        transform: translateY(-6px);
+        box-shadow: var(--shadow-strong);
+    }
+
+    .info-table {
+        border-collapse: collapse;
+        width: 100%;
+    }
+    .info-table thead {
+        display: table-header-group;
+    }
+    .info-table tr {
+        display: table-row;
+        /* Reset mobile card styles */
+        border-left: none;
+        margin-bottom: 0;
+        padding: 0;
+        box-shadow: none;
+        background: none;
+        border-radius: 0;
+    }
+    .info-table tr:hover {
+        background-color: var(--surface-light);
+    }
+    .info-table th, .info-table td {
+        display: table-cell;     /* ensure table layout */
+    padding: 1.25rem;
+    border-bottom: 1px solid var(--surface-dark);
+    text-align: left;        /* align text properly */
+    vertical-align: middle;  /* center content vertically */
+    }
+    .info-table tr:last-child td {
+        border-bottom: none;
+    }
+    .info-table th {
+        background-color: var(--brand-blue-light);
+        color: var(--brand-blue-dark);
+        font-weight: 600;
+    }
+    .info-table td::before {
+        display: none; /* Hide data labels on desktop */
+    }
+    .info-table td[data-label="Action"] {
+        text-align: center;
+    }
+    .info-table td {
+    justify-content: unset;  /* reset flexbox */
+    align-items: unset;      /* reset flexbox */
+  }
+
+  .info-table th:last-child,
+  .info-table td[data-label="Action"] {
+    text-align: right;
+  }
+}
+
+/* --- Modal Styles --- */
+.venue-modal-overlay {
+    position: fixed; top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(17, 19, 24, 0.7); backdrop-filter: blur(4px);
+    display: flex; align-items: center; justify-content: center;
+    z-index: 1000; padding: 1rem;
+}
+.venue-modal-content {
+    background: var(--white); border-radius: var(--radius);
+    width: 100%; max-width: 700px; max-height: 90vh;
+    overflow-y: auto; position: relative;
+}
+.venue-modal-close-btn {
+    position: absolute; top: 12px; right: 15px; background: transparent;
+    border: none; font-size: 2.5rem; color: var(--text-secondary);
+    cursor: pointer; line-height: 1;
+}
+.venue-modal-image {
+    width: 100%; height: 300px; object-fit: cover;
+    border-radius: var(--radius) var(--radius) 0 0;
+}
+.venue-modal-body { padding: 2rem; }
+.venue-modal-body h3 { font-size: 2rem; color: var(--brand-blue-dark); margin: 0 0 0.5rem; }
+.venue-modal-meta { color: var(--text-secondary); margin-bottom: 1.5rem; }
+.venue-modal-map { margin-top: 1.5rem; border-radius: var(--radius); overflow: hidden; }
+
+
+/* --- Accommodation Section Styles --- */
+.accommodation-info {
+    text-align: center;
+}
+
+.accommodation-info p {
+    color: var(--text-secondary);
+    font-size: 1.1rem;
+    max-width: 800px;
+    margin: 0 auto 2.5rem auto;
+}
+
+.hotel-links {
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+    flex-wrap: wrap; /* Allows buttons to stack on smaller screens */
+    margin-bottom: 2.5rem;
+}
+
+.btn-link {
+    background-color: var(--brand-orange);
+    color: var(--white);
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.75rem;
+    font-size: 1rem;
+    padding: 0.75rem 1.5rem;
+}
+
+.btn-link:hover {
+    background-color: var(--brand-orange-dark);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-soft);
+}
+
+.accommodation-note {
+    background-color: var(--brand-blue-light);
+    border-left: 4px solid var(--brand-blue-primary);
+    border-radius: 8px;
+    padding: 1.5rem;
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+    text-align: left;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.accommodation-note .note-icon {
+    font-size: 1.5rem;
+    color: var(--brand-blue-primary);
+    margin-top: 0.2rem;
+}
+
+.accommodation-note strong {
+    color: var(--brand-blue-dark);
+    font-weight: 700;
+}
+

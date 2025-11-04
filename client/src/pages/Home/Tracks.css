@@ -1,0 +1,240 @@
+/* --- Global Variables (assumed from your project) --- */
+:root {
+    --brand-orange: #F57C00;
+    --brand-blue-dark: #0D47A1;
+    --brand-red: #D32F2F;
+    --brand-blue-primary: #1976D2;
+    --text-primary: #111318;
+    --text-secondary: #6c757d;
+    --white: #FFFFFF;
+    --surface-light: #f8f9fa;
+    --surface-dark: #e9ecef;
+    --radius: 12px;
+}
+
+/* --- Base Section Styling --- */
+.tracks-section {
+    padding: clamp(3rem, 8vw, 6rem) 1rem; /* Fluid padding */
+    background: var(--surface-light);
+}
+.container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+.tracks-header {
+    text-align: center;
+    margin-bottom: clamp(2.5rem, 6vw, 4rem); /* Fluid margin */
+}
+.tracks-header .kicker {
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    color: var(--brand-orange);
+    font-weight: 700;
+}
+.tracks-header h2 {
+    font-size: clamp(2rem, 5vw, 2.75rem); /* Fluid font size */
+    color: var(--brand-blue-dark);
+    margin: 0.5rem 0 0 0;
+}
+
+/* --- MOBILE-FIRST ACCORDION DESIGN --- */
+.date-tab {
+    display: none; /* Hide vertical tab on mobile */
+}
+.day-schedule-group {
+    margin-bottom: 2rem;
+}
+.day-schedule-group::before { /* Add a date title for mobile */
+    content: attr(data-day);
+    display: block;
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--brand-blue-dark);
+    text-align: left;
+    margin-bottom: 1rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 2px solid var(--brand-orange);
+}
+
+.events-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+.event-card {
+    background: var(--white);
+    border: 1px solid var(--surface-dark);
+    border-radius: var(--radius);
+    transition: all 0.3s ease;
+}
+.event-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 1rem;
+    padding: 1.25rem;
+    cursor: pointer;
+}
+.event-time {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: var(--brand-orange);
+    font-weight: 600;
+    font-size: 0.9rem;
+    margin-bottom: 0.5rem;
+}
+.event-card h3 {
+    margin: 0;
+    font-size: clamp(1rem, 2.5vw, 1.1rem); /* Fluid font size */
+    color: var(--text-primary);
+    line-height: 1.4;
+    text-align: left;
+}
+.expand-button {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    border: 1px solid var(--surface-dark);
+    background-color: transparent;
+    color: var(--text-secondary);
+    font-size: 1.5rem;
+    line-height: 30px;
+    flex-shrink: 0;
+    transition: all 0.3s ease;
+}
+.event-card.open .expand-button {
+    transform: rotate(45deg);
+    background: var(--brand-orange);
+    color: var(--white);
+    border-color: var(--brand-orange);
+}
+.event-description {
+    max-height: 0;
+    opacity: 0;
+    overflow: hidden;
+    transition: all 0.4s ease-out;
+    font-size: clamp(0.9rem, 2vw, 0.95rem); /* Fluid font size */
+    color: var(--text-secondary);
+    line-height: 1.6;
+    text-align: left;
+    padding: 0 1.25rem 1.25rem; /* Apply padding to the container */
+}
+.event-description p {
+    margin: 0;
+    padding-top: 1.25rem; /* Only add top padding */
+    border-top: 1px solid var(--surface-dark);
+}
+.event-card.open .event-description {
+    max-height: 250px; /* Increased height to fit button */
+    opacity: 1;
+}
+.view-more-btn {
+    display: inline-block;
+    margin-top: 1rem;
+    padding: 0.5rem 1rem;
+    font-size: 0.85rem;
+    font-weight: 600;
+    border-radius: 8px;
+    cursor: pointer;
+    border: none;
+    background-color: var(--brand-blue-primary);
+    color: var(--white);
+    text-decoration: none;
+    transition: background-color 0.2s ease;
+}
+.view-more-btn:hover {
+    background-color: var(--brand-blue-dark);
+}
+
+/* --- TABLET & DESKTOP VIEW (Media Query) --- */
+@media (min-width: 768px) {
+    .tracks-layout {
+        max-width: 1024px;
+        margin: 0 auto;
+        padding: 2rem;
+        border-radius: 16px;
+        box-shadow: 0 20px 40px rgba(0,0,0,0.08);
+        border: 1px solid var(--surface-dark);
+        background-color: var(--white);
+    }
+    .day-schedule-group {
+        display: grid; /* Use grid for better alignment */
+        grid-template-columns: auto 1fr;
+        align-items: stretch; /* Make children same height */
+        gap: 2rem;
+        margin-bottom: 2rem;
+    }
+    .day-schedule-group:last-child {
+        margin-bottom: 0;
+    }
+    .day-schedule-group::before {
+        display: none;
+    }
+    .date-tab {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 0.5rem;
+        background: var(--brand-blue-dark);
+        color: var(--white);
+        writing-mode: vertical-rl;
+        transform: rotate(180deg);
+        padding: 1.5rem 0.75rem;
+        border-radius: 12px;
+        text-align: center;
+        font-weight: 700;
+        flex-shrink: 0;
+    }
+    .day-schedule-group:nth-child(2) .date-tab {
+        background: var(--brand-red);
+    }
+    .date-tab span { font-size: 1rem; letter-spacing: 1.5px; }
+    .date-tab .tab-text { font-size: 0.85rem; font-weight: 500; }
+    
+    .event-card {
+        padding: 1.5rem;
+        cursor: default;
+        display: flex;
+        flex-direction: column;
+    }
+    .event-card:hover {
+        border-color: var(--brand-orange);
+        transform: translateY(-3px);
+        box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+    }
+    .event-header { padding: 0; cursor: default; }
+    .event-card h3 { font-size: 1.3rem; }
+    .event-description {
+        max-height: none; /* Always show on desktop */
+        opacity: 1;
+        margin-top: 1rem;
+        flex-grow: 1; /* Make description take up remaining space */
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between; /* Push button to bottom */
+        padding: 0; /* Remove mobile padding */
+    }
+    .event-description p { padding: 0; border: none; }
+    .expand-button { display: none; }
+
+    .view-more-btn {
+        align-self: flex-start;
+    }
+}
+
+/* Added a new breakpoint for small laptops to prevent content from squishing */
+@media (min-width: 768px) and (max-width: 1024px) {
+    .tracks-layout {
+        padding: 1.5rem;
+    }
+    .day-schedule-group {
+        gap: 1.5rem;
+    }
+    .event-card h3 {
+        font-size: 1.2rem;
+    }
+}
+

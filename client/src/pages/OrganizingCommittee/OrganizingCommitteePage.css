@@ -1,0 +1,269 @@
+/* --- Base Page Styles --- */
+.organizingCommitteePage {
+    background-color: var(--surface-light);
+    font-family: 'Poppins', sans-serif;
+    margin-top: -350px;
+}
+
+.organizingCommitteePage .container {
+    width: 100%;
+    max-width: var(--page-max-width);
+    margin: 0 auto;
+    padding: 0 var(--gutter);
+}
+
+/* --- Page Header (NEW DESIGN) --- */
+.organizingCommitteePage .page-header {
+    padding-top: 12rem;
+    padding-bottom: 2rem;
+    text-align: center;
+    background-color: var(--surface-light); 
+}
+
+.organizingCommitteePage .page-header h1 {
+    font-size: clamp(2.2rem, 5vw, 3rem);
+    color: var(--brand-blue-dark); 
+    margin: 0;
+    position: relative;
+    display: inline-block; 
+    padding-bottom: 0.75rem;
+}
+
+.organizingCommitteePage .page-header h1::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80px; /* Width of the orange line */
+    height: 4px;
+    background-color: var(--brand-orange);
+    border-radius: 2px;
+}
+
+/* --- Two-Column Layout --- */
+.organizingCommitteePage .committee-layout {
+    display: grid;
+    grid-template-columns: 280px 1fr;
+    gap: 2.5rem;
+    padding: 3rem var(--gutter);
+    align-items: flex-start;
+}
+
+/* --- Left Side Navigation --- */
+.organizingCommitteePage .committee-nav {
+    position: sticky;
+    top: 120px; /* Aligns with navbar height + spacing */
+    background: var(--white);
+    padding: 1.5rem;
+    border-radius: var(--radius);
+    box-shadow: var(--shadow-soft);
+    border: 1px solid var(--surface-dark);
+}
+
+.organizingCommitteePage .committee-nav h2 {
+    font-size: 1.2rem;
+    color: var(--text-primary);
+    margin: 0 0 1rem 0;
+    padding-bottom: 0.75rem;
+    border-bottom: 1px solid var(--surface-dark);
+}
+
+.organizingCommitteePage .committee-nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.organizingCommitteePage .nav-link {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.75rem 1rem;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: 500;
+    color: var(--text-secondary);
+    transition: all 0.2s ease;
+    border-left: 3px solid transparent;
+}
+
+.organizingCommitteePage .nav-link:hover {
+    background-color: var(--surface-light);
+    color: var(--brand-blue-dark);
+}
+
+.organizingCommitteePage .nav-link.active {
+    background-color: var(--brand-blue-light);
+    color: var(--brand-blue-dark);
+    border-left-color: var(--brand-orange);
+    font-weight: 600;
+}
+
+.organizingCommitteePage .nav-link svg {
+    flex-shrink: 0;
+    font-size: 1.1rem;
+    width: 20px;
+}
+
+
+/* --- Right Side Content --- */
+.organizingCommitteePage .committee-details {
+    display: flex;
+    flex-direction: column;
+    gap: 2.5rem;
+    padding-bottom: 40vh; /* FIXED: Added padding */
+}
+
+.organizingCommitteePage .detail-card {
+    background-color: var(--white);
+    padding: 2rem;
+    border-radius: var(--radius);
+    box-shadow: var(--shadow-soft);
+    border: 1px solid var(--surface-dark);
+}
+
+.organizingCommitteePage .detail-title {
+    font-size: 1.6rem;
+    font-weight: 700;
+    color: var(--brand-blue-dark);
+    margin: 0 0 1.5rem 0;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid var(--surface-dark);
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.organizingCommitteePage .member-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+}
+
+.organizingCommitteePage .member-item {
+    background: var(--surface-light);
+    padding: 1.25rem;
+    border-radius: 8px;
+    border-left: 3px solid var(--brand-blue-primary);
+    transition: all 0.2s ease;
+}
+
+.organizingCommitteePage .member-item:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-soft);
+    border-left-color: var(--brand-orange);
+}
+
+.organizingCommitteePage .member-item strong {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin: 0 0 0.25rem 0;
+    display: block;
+}
+
+.organizingCommitteePage .member-item .role {
+    font-size: 0.9rem;
+    color: var(--brand-orange);
+    font-weight: 500;
+    margin: 0 0 0.25rem 0;
+    display: block;
+}
+
+.organizingCommitteePage .member-item .institution {
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    margin: 0;
+    display: block;
+}
+
+/* --- Mobile Dropdown Nav --- */
+.organizingCommitteePage .mobile-nav-toggle {
+    display: none;
+    position: relative;
+    margin-bottom: 2rem;
+}
+
+.organizingCommitteePage .mobile-dropdown-trigger {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    padding: 1rem 1.25rem;
+    background: var(--white);
+    border: 1px solid var(--surface-dark);
+    border-radius: var(--radius);
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--brand-blue-dark);
+    box-shadow: var(--shadow-soft);
+    cursor: pointer;
+}
+
+.organizingCommitteePage .dropdown-chevron {
+    transition: transform 0.3s ease;
+}
+
+.organizingCommitteePage .dropdown-chevron.open {
+    transform: rotate(180deg);
+}
+
+.organizingCommitteePage .mobile-nav-dropdown {
+    position: absolute;
+    top: calc(100% + 0.5rem);
+    left: 0;
+    right: 0;
+    background: var(--white);
+    border-radius: var(--radius);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+    overflow: hidden;
+    z-index: 100;
+    max-height: 0;
+    opacity: 0;
+    transition: all 0.3s ease-in-out;
+}
+
+.organizingCommitteePage .mobile-nav-dropdown.open {
+    max-height: 500px;
+    opacity: 1;
+}
+
+.organizingCommitteePage .mobile-nav-link {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem 1.25rem;
+    text-decoration: none;
+    color: var(--text-secondary);
+    font-weight: 600;
+    border-bottom: 1px solid var(--surface-dark);
+}
+.organizingCommitteePage .mobile-nav-link:last-child {
+    border-bottom: none;
+}
+.organizingCommitteePage .mobile-nav-link.active {
+    background-color: var(--brand-blue-light);
+    color: var(--brand-blue-dark);
+}
+.organizingCommitteePage .mobile-nav-link svg {
+    font-size: 1.1rem;
+    width: 20px;
+}
+
+
+/* --- Responsive Adjustments --- */
+@media (max-width: 900px) {
+    .organizingCommitteePage .committee-layout {
+        grid-template-columns: 1fr;
+    }
+    .organizingCommitteePage .committee-nav {
+        display: none;
+    }
+    .organizingCommitteePage .mobile-nav-toggle {
+        display: block;
+    }
+}

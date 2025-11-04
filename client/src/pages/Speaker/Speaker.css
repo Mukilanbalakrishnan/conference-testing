@@ -1,0 +1,260 @@
+/* --- Animation Keyframes --- */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes draw-speaker-border {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+/* NEW: Keyframe for the pop-up effect on scroll */
+@keyframes card-popup-scroll {
+  to {
+    transform: translateY(-15px) scale(1.05);
+    box-shadow: 0 25px 40px -10px rgba(0,0,0,0.15);
+  }
+}
+
+.speaker-page-main{
+  margin-top: -300px;
+}
+
+/* --- Global Container for this page --- */
+.event-container {
+    width: 100%;
+    max-width: var(--page-max-width, 1400px); 
+    margin: 0 auto;
+    padding: 0 var(--gutter, 1.25rem);
+    margin-top: -50px;
+}
+
+/* --- Page Header --- */
+.event-page-header {
+  padding-top: 12rem;
+  padding-bottom: 2rem;
+  text-align: center;
+  animation: fadeInUp 0.6s ease-out;
+}
+.event-page-header h1 {
+  font-size: clamp(2.2rem, 5vw, 3rem); 
+  font-weight: 800;
+  color: var(--brand-blue-dark);
+  margin: 0 0 0.5rem 0;
+  position: relative;
+  display: inline-block;
+  padding-bottom: 0.75rem;
+}
+.event-page-header h1::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60px;
+  height: 4px;
+  background-color: var(--brand-orange);
+  border-radius: 2px;
+}
+.event-page-header p {
+  font-size: clamp(1rem, 2.5vw, 1.15rem);
+  color: var(--text-secondary);
+  max-width: 600px;
+  margin: 1rem auto 0;
+}
+
+/* --- Event Speakers Section --- */
+.event-speakers-section {
+  padding: clamp(4rem, 10vw, 6rem) 1rem;
+  background-color: var(--surface-light);
+}
+
+/* --- Flexbox Layout for Desktop --- */
+.event-speakers-grid {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  margin-top: 7rem;
+  height: 30rem;
+}
+
+/* --- Speaker Card Design --- */
+.event-speaker-profile {
+  background: var(--white);
+  border-radius: var(--radius, 12px);
+  padding: 1.5rem;
+  padding-top: 80px;
+  width: 320px;
+  flex-shrink: 0;
+  box-shadow: var(--shadow-soft);
+  text-align: center;
+  position: relative;
+  
+  /* Initial state for animations */
+  opacity: 0;
+  transform: translateY(30px);
+
+  /* UPDATED: Smoother transition for all properties */
+  transition: opacity 0.6s ease-out, 
+              transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+              box-shadow 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.event-speaker-profile.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* UPDATED: Added scale to the hover effect */
+.event-speaker-profile:hover {
+  transform: translateY(-15px) scale(1.05);
+  box-shadow: 0 25px 40px -10px rgba(0,0,0,0.15);
+}
+
+/* --- Overlapping Image & SVG Border --- */
+.event-speaker-image-wrapper {
+  width: 160px;
+  height: 160px;
+  position: absolute;
+  top: -80px;
+  left: 50%;
+  transform: translateX(-50%);
+  /* UPDATED: Smoother transition */
+  transition: transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+.event-speaker-profile:hover .event-speaker-image-wrapper {
+    transform: translateX(-50%) scale(1.05);
+}
+
+.event-speaker-svg-border path {
+    fill: none;
+    stroke-width: 5;
+    stroke-linecap: round;
+    stroke-dasharray: 236; 
+    stroke-dashoffset: 236;
+    transition: stroke-dashoffset 0.8s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.event-border-path-1 { stroke: var(--brand-blue-primary); }
+.event-border-path-2 { stroke: var(--brand-orange); }
+
+.event-speaker-profile:hover .event-speaker-svg-border path {
+    stroke-dashoffset: 0;
+}
+
+.event-speaker-profile:hover .event-border-path-2 {
+    transition-delay: 0.1s;
+}
+
+/* --- Speaker Info (No changes here) --- */
+.event-speaker-info {
+  margin-top: 1rem;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+.event-speaker-info .event-name {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin: 0 0 0.25rem;
+}
+.event-speaker-info .event-title {
+  color: var(--brand-orange);
+  font-weight: 600;
+  text-transform: uppercase;
+  font-size: 0.85rem;
+  letter-spacing: 0.5px;
+  margin-bottom: 0.5rem;
+}
+.event-speaker-info .event-title2 {
+  color: var(--brand-blue-primary);
+  font-weight: 500;
+  font-size: 0.95rem;
+  margin-bottom: 1.5rem;
+}
+.event-speaker-info .event-bio {
+  font-size: 0.95rem;
+  color: var(--text-secondary);
+  line-height: 1.6;
+  margin-top: auto;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--surface-dark);
+}
+
+/* --- Social Links --- */
+.event-speaker-socials {
+  display: flex;
+  justify-content: center;
+  gap: 1.5rem;
+  margin: 1.5rem 0 0;
+}
+.event-speaker-socials a {
+  color: var(--text-secondary);
+  font-size: 1.25rem;
+  /* UPDATED: Smoother transition */
+  transition: all 0.3s ease-in-out;
+}
+.event-speaker-socials a:hover {
+  color: var(--brand-orange);
+  transform: scale(1.2);
+}
+
+/* --- Responsive adjustments FOR MOBILE --- */
+@media (max-width: 768px) {
+  .event-speakers-grid {
+    flex-direction: column;
+    align-items: center;
+    gap: 7rem;
+  }
+  .speaker-page-main {
+    margin-top: -300px;
+  }
+  .event-container {
+    margin-top: 0;
+  }
+  .event-speakers-section, .event-page-header {
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+  }
+
+  /* --- Scroll-triggered animations --- */
+
+  .event-speaker-profile {
+    /* 1. Set up the timeline and apply the pop-up animation */
+    view-timeline-name: --speaker-card-scroll;
+    animation: card-popup-scroll linear forwards;
+    animation-timeline: --speaker-card-scroll;
+    animation-range-start: entry 25%;
+    animation-range-end: entry 60%;
+  }
+
+  /* 2. Disable hover effects on mobile */
+  .event-speaker-profile:hover {
+      transform: none; /* Prevents jumping on tap */
+      box-shadow: var(--shadow-soft);
+  }
+  .event-speaker-profile:hover .event-speaker-svg-border path {
+      stroke-dashoffset: 236;
+  }
+
+  /* 3. Apply the circle-drawing animation */
+  .event-speaker-svg-border path {
+      animation: draw-speaker-border linear forwards;
+      animation-timeline: --speaker-card-scroll;
+      animation-range-start: entry 25%;
+      animation-range-end: entry 70%;
+  }
+  .event-speaker-svg-border .event-border-path-2 {
+      animation-range-start: entry 35%;
+      animation-range-end: entry 80%;
+  }
+}
